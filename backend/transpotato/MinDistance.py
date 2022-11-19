@@ -118,8 +118,15 @@ def ret(lat, long, street):
     adress = (geocode(gmaps, str(str(street) + ",München, DE")))
     finlat = adress[0]['geometry']['location']['lat']
     finlong = adress[0]['geometry']['location']['lng']
+    if finlong == long:
+        print("Error")
     #dist = getdistance(lat, long, finlat, finlong)
     distancestot = totaldistance(lat, long, finlat, finlong)
-    transit = gettime(lat, long, finlat, finlong)
+    transit = 0
+    try:
+        transit = gettime(lat, long, finlat, finlong)
+    except:
+        print("An exception occurred")
     returnval = {"credits": [int(distancestot[1][0]*0.01*2),int(transit*11.111*0.005*2),int(distancestot[0][0]*0.012*2),int(distancestot[1][0]*0.0035*2)], "duration": [int(distancestot[1][1]/60),int(transit/60),int(distancestot[0][1]/60),int(distancestot[1][0]*8/60/60)], "distance": [distancestot[1][0],distancestot[0][0],distancestot[1][0]]}
     return returnval
+
