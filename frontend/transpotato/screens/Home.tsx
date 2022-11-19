@@ -2,14 +2,9 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import React, { useEffect } from "react";
 import { StyleSheet } from "react-native";
 import SearchCard from "../components/SearchCard";
+import Header from "../components/Header";
 
-import {
-  Text,
-  SafeAreaView,
-  Card,
-  TextInput,
-  Button,
-} from "../components/Themed";
+import { Text, SafeAreaView, Card } from "../components/Themed";
 import { RootTabScreenProps } from "../types";
 
 export default function Home({ navigation }: RootTabScreenProps<"Home">) {
@@ -31,6 +26,7 @@ export default function Home({ navigation }: RootTabScreenProps<"Home">) {
 
   return (
     <SafeAreaView style={styles.container}>
+      <Header />
       <Card size={2}>
         <Text style={styles.title}>Welcome to Transpotato!</Text>
         <Text style={styles.subtitle}>Your ID: {id}</Text>
@@ -45,7 +41,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    paddingTop: 50,
   },
   title: {
     fontSize: 20,

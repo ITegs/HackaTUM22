@@ -1,7 +1,7 @@
 import React from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, TextInput } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import { Card, TextInput } from "./Themed";
+import { Card } from "./Themed";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function SearchCard(props: any) {

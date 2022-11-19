@@ -7,7 +7,7 @@ import * as Location from "expo-location";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { FontAwesome } from "@expo/vector-icons";
 
-export default function Travelling() {
+export default function Travelling({ navigation }: any) {
   const [running, setRunning] = useState(true);
   const [location, setLocation] = useState<any>();
   const [method, setMethod] = useState(0);
@@ -29,15 +29,13 @@ export default function Travelling() {
   };
 
   const logLocation = async () => {
-    const unixTime = Math.round(+new Date() / 1000);
-
     await Location.getCurrentPositionAsync({}).then((location) => {
       setLocation(location);
       const latitude = location.coords.latitude;
       const longitude = location.coords.longitude;
 
       track[0].trackSpots.push({
-        timestamp: unixTime,
+        timestamp: location.timestamp,
         latitude: latitude,
         longitude: longitude,
       });
@@ -59,6 +57,8 @@ export default function Travelling() {
     clearInterval(interval);
     console.log("break");
     console.log(track);
+
+    navigation.navigate("Home");
   };
 
   useEffect(() => {

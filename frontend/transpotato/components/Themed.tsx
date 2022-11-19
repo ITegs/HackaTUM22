@@ -8,7 +8,6 @@ import {
   View as DefaultView,
   SafeAreaView as DefaultSafeAreaView,
   ScrollView as DefaultScrollView,
-  Button as DefaultButton,
   TextInput as DefaultTextInput,
 } from "react-native";
 
@@ -39,8 +38,8 @@ export type ViewProps = ThemeProps & DefaultView["props"];
 export type SafeAreaViewProps = ThemeProps & DefaultSafeAreaView["props"];
 export type ScrollViewProps = ThemeProps & DefaultScrollView["props"];
 export type CardProps = ThemeProps & DefaultView["props"] & { size: number };
-export type ButtonProps = ThemeProps & DefaultButton["props"];
 export type TextInputProps = ThemeProps & DefaultTextInput["props"];
+export type HeaderProps = ThemeProps & DefaultView["props"];
 
 export function Text(props: TextProps) {
   const { style, lightColor, darkColor, ...otherProps } = props;
@@ -120,28 +119,29 @@ export function Card(props: CardProps) {
   );
 }
 
-export function Button(props: ButtonProps) {
-  const { lightColor, darkColor, ...otherProps } = props;
+export function HeaderView(props: HeaderProps) {
+  const { style, lightColor, darkColor, ...otherProps } = props;
   const backgroundColor = useThemeColor(
     { light: lightColor, dark: darkColor },
-    "button"
+    "acc1"
   );
-
-  return <DefaultButton color={backgroundColor} {...otherProps} />;
-}
-
-export function TextInput(props: TextInputProps) {
-  const { lightColor, darkColor, ...otherProps } = props;
+  const height = 120;
+  const width = "100%";
+  const borderBottomLeftRadius = 25;
+  const borderBottomRightRadius = 25;
 
   return (
-    <DefaultTextInput
-      style={{
-        height: 40,
-        margin: 12,
-        borderRadius: 10,
-        padding: 10,
-        fontFamily: "YanoneKaffeesatz",
-      }}
+    <DefaultView
+      style={[
+        {
+          backgroundColor,
+          height,
+          width,
+          borderBottomLeftRadius,
+          borderBottomRightRadius,
+        },
+        style,
+      ]}
       {...otherProps}
     />
   );

@@ -2,17 +2,19 @@
 
 export default {
   light: {
-    text: "#1B221D",
     background: "#FFFFFA",
-    card: "#639275",
-    button: "#508CA4",
-    accent1: "#FF312E",
+    text: "#2B252D",
+    card: "#59A96A",
+    acc1: "#2E4057",
+    acc2: "#559CAD",
+    acc3: "#5B9279",
   },
   dark: {
+    background: "#2B252D",
     text: "#FFFFFA",
-    background: "#1B221D",
-    card: "#233329",
-    button: "#508CA4",
-    accent1: "#FF312E",
+    card: "#59A96A",
+    acc1: "#2E4057",
+    acc2: "#559CAD",
+    acc3: "#5B9279",
   },
 };
