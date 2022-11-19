@@ -4,6 +4,10 @@ from snippets.models import GenUser
 
 class GenUserSerializer(serializers.Serializer):
     id = serializers.UUIDField()
+    Username = serializers.CharField()
+    score = serializers.IntegerField()
+    TotalDistance = serializers.IntegerField()
+
 
     def create(self, validated_data):
         """

@@ -17,7 +17,7 @@ def snippet_list(request):
     List all code snippets, or create a new snippet.
     """
     if request.method == 'GET':
-        user = GenUser(id=str(uuid.uuid4()))
+        user = GenUser(id=str(uuid.uuid4()), Username='')
         user.save()
         serializer = GenUserSerializer(user)
         return JsonResponse(serializer.data, safe=False)
