@@ -113,7 +113,6 @@ def values(distancestot, transit):
     print(electrodistance)
     print(transittime)
 
-## current latitude, current longitude, string of destination name
 def ret(lat, long, street):
     adress = (geocode(gmaps, str(str(street) + ",München, DE")))
     finlat = adress[0]['geometry']['location']['lat']
@@ -129,5 +128,3 @@ def ret(lat, long, street):
         print("An exception occurred")
     returnval = {"credits": [int(distancestot[1][0]*0.01*2),int(transit*11.111*0.005*2),int(distancestot[0][0]*0.012*2),int(distancestot[1][0]*0.0035*2)], "duration": [int(distancestot[1][1]/60),int(transit/60),int(distancestot[0][1]/60),int(distancestot[1][0]*8/60/60)], "distance": [distancestot[1][0],distancestot[0][0],distancestot[1][0]]}
     return returnval
-
-print(ret(48.262550, 11.667970, "Olympia Einkaufszentrum"))
