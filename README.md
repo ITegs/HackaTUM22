@@ -4,9 +4,9 @@
 <br>
 <br>
 
-<h2 align=center>EnvironMUC</h2>
+<h2 align=center>Transpotato</h2>
 
-**_Motivate people to use environmentally friendly transportation services, by collecting credits for using environmentally friendly transportation._** \
+**_Rewarding people with points depending on how environmentally friendly they are, and challenging them to compete against other users._** \
 <br>
 
 ## intended process of using the app
