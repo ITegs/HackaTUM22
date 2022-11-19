@@ -103,23 +103,37 @@ def getlvl(id):
     score = getscore(id)
     over = False
     lvl = 0
-    pointsremein = 0
+    pointsremain = 0
     num = 10
     while not over:
-        if(lvl>=num):
+        if(score>=num):
             over = True
-            pointsremein = num-lvl
+            pointsremain = num-lvl
+        else:
+            num = int(num * 1.3)
+            lvl = lvl + 1
+    return {'lvl':lvl, 'needed':int(pointsremain)}
+
+def getlvls(score):
+    over = False
+    lvl = 0
+    pointsremain = 0
+    num = 10
+    while not over:
+        if(score<num):
+            over = True
+            pointsremain = num-lvl
         else:
             num = num * 1.3
-            lvl = lvl +1
-    return {'lvl':lvl, 'needed':int(pointsremein)}
+            lvl = lvl + 1
+    return {'lvl':lvl, 'needed':int(pointsremain)}
 
 #createtable()
 #showtable()
 con = sqshit.connect("db.sqlite3")
 cur = con.cursor()
 x = cur.fetchall()
-print(getnewID())
+print(getlvls(1000))
 #addvalue(1, 1, 2)
 
 
