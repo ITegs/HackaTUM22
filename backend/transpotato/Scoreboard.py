@@ -61,6 +61,13 @@ def getdistance(id):
     sofar = cur.fetchall()[0][0]
     return sofar
 
+def getname(id):
+    con = sqshit.connect("db.sqlite3")
+    cur = con.cursor()
+    cur.execute("SELECT Username FROM snippets_genuser WHERE id = ?", (id,))
+    sofar = cur.fetchall()[0][0]
+    return sofar
+
 def gettop10():
     con = sqshit.connect("db.sqlite3")
     cur = con.cursor()
@@ -91,6 +98,8 @@ def getnewID():
     cur.execute("SELECT id FROM snippets_genuser ORDER BY id DESC")
     new = cur.fetchall()
     return new[0][0]
+
+
 
 #createtable()
 #showtable()
