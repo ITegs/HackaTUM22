@@ -25,6 +25,7 @@ import {
   RootTabScreenProps,
 } from "../types";
 import LinkingConfiguration from "./LinkingConfiguration";
+import Travelling from "../screens/Travelling";
 
 export default function Navigation({
   colorScheme,
@@ -64,6 +65,11 @@ function RootNavigator() {
         name="SelectTransportation"
         component={SelectTransportation}
         options={{ title: "Select Transportation", headerShown: false }}
+      />
+      <Stack.Screen
+        name="Travelling"
+        component={Travelling}
+        options={{ title: "Traveling", headerShown: false }}
       />
     </Stack.Navigator>
   );

@@ -4,6 +4,7 @@ import { StyleSheet } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { View, Text, Card } from "../components/Themed";
+import Theme from "../constants/Theme";
 
 export default function SelectTransportation({ navigation }: any) {
   const [destination, setDestination] = useState("");
@@ -24,33 +25,51 @@ export default function SelectTransportation({ navigation }: any) {
     getDestination();
   }, []);
 
+  function toTravelling(i: number) {
+    navigation.navigate("Travelling");
+  }
+
   return (
     <View style={styles.container}>
-      <Text style={styles.destination}>{destination}</Text>
-      <Text style={styles.title}>Select Transportation</Text>
+      <Card size={2} style={styles.desCard}>
+        <Text style={styles.destination}>{destination}</Text>
+      </Card>
+      <Text style={styles.title}>Select type of transportation</Text>
 
       <View style={styles.select}>
         <View style={styles.transportationRow}>
-          <Card size={1} style={styles.card}>
+          <Card
+            size={1}
+            style={styles.card}
+            onTouchStart={() => toTravelling(0)}
+          >
             <Ionicons name="bicycle" size={60} color="black" />
           </Card>
-          <Card size={1} style={styles.card}>
+          <Card
+            size={1}
+            style={styles.card}
+            onTouchStart={() => toTravelling(1)}
+          >
             <Ionicons name="walk" size={60} color="black" />
           </Card>
         </View>
         <View style={styles.transportationRow}>
-          <Card size={1} style={styles.card}>
+          <Card
+            size={1}
+            style={styles.card}
+            onTouchStart={() => toTravelling(2)}
+          >
             <Ionicons name="bus" size={60} color="black" />
           </Card>
-          <Card size={1} style={styles.card}>
+          <Card
+            size={1}
+            style={styles.card}
+            onTouchStart={() => toTravelling(3)}
+          >
             <MaterialIcons name="bike-scooter" size={60} color="black" />
           </Card>
         </View>
-        <Card
-          size={2}
-          style={styles.card}
-          onTouchStart={() => navigation.navigate("Home")}
-        >
+        <Card size={2} style={styles.card} onTouchStart={() => toTravelling(5)}>
           <Text style={styles.cardText}>Nothing above</Text>
         </Card>
       </View>
@@ -64,12 +83,19 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingTop: 50,
   },
-  destination: {
-    fontSize: 20,
+  desCard: {
+    height: 70,
+    padding: 20,
+    marginBottom: 20,
   },
-
+  destination: {
+    fontSize: 25,
+    fontWeight: "bold",
+    letterSpacing: 1,
+    color: Theme.light.accent1,
+  },
   title: {
-    fontSize: 20,
+    fontSize: 25,
   },
   select: {
     position: "absolute",

@@ -46,14 +46,8 @@ export function Text(props: TextProps) {
   const { style, lightColor, darkColor, ...otherProps } = props;
   const color = useThemeColor({ light: lightColor, dark: darkColor }, "text");
   const fontFamily = "YanoneKaffeesatz";
-  const fontWeight = "bold";
 
-  return (
-    <DefaultText
-      style={[{ color, fontFamily, fontWeight }, style]}
-      {...otherProps}
-    />
-  );
+  return <DefaultText style={[{ color, fontFamily }, style]} {...otherProps} />;
 }
 
 export function View(props: ViewProps) {
