@@ -1,3 +1,4 @@
+import React from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { StatusBar } from "expo-status-bar";
 import { useEffect, useState } from "react";
@@ -23,7 +24,7 @@ export default function App() {
   };
 
   const generateID = async () => {
-    fetch("localhost:8000/genUser", {
+    fetch("http://localhost:8000/genUser", {
       method: "GET",
     })
       .then((response) => response.json())

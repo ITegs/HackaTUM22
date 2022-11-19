@@ -21,6 +21,8 @@ export default function Home({ navigation }: RootTabScreenProps<"Home">) {
 
   useEffect(() => {
     AsyncStorage.getItem("id").then((value) => {
+      console.log("ID: " + value);
+
       if (value !== null) {
         setId(value);
       }
