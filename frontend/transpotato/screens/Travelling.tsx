@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { View, Text } from "../components/Themed";
+import { View, Text, Card } from "../components/Themed";
 import { StyleSheet } from "react-native";
 import { track } from "../variables/track";
 
 import * as Location from "expo-location";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { FontAwesome } from "@expo/vector-icons";
 
 export default function Travelling() {
   const [running, setRunning] = useState(true);
@@ -22,7 +23,7 @@ export default function Travelling() {
   const resetTrack = () => {
     track.length = 0;
     track[0] = {
-      method: 1,
+      method: method,
       trackSpots: [],
     };
   };
@@ -48,7 +49,6 @@ export default function Travelling() {
   const loop = () => {
     if (running) {
       console.log("loop");
-
       logLocation();
       setInterval(setTimeout(loop, 60000));
     }
@@ -82,9 +82,14 @@ export default function Travelling() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title} onPress={breakLoop}>
-        Button
+      <Text style={styles.title}>
+        Keep on {method === 0 ? "cycling" : method === 1 ? "walking" : "moving"}
+        !
       </Text>
+      <Card style={styles.card} size={2} onTouchStart={breakLoop}>
+        <FontAwesome name="close" size={60} color="black" />
+        <Text style={styles.title}>Stop tracking</Text>
+      </Card>
     </View>
   );
 }
@@ -95,8 +100,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+  card: {
+    height: "30%",
+    backgroundColor: "#FF312E",
+  },
   title: {
-    fontSize: 20,
+    fontSize: 30,
     fontWeight: "bold",
   },
 });

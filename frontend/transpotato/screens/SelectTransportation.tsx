@@ -26,6 +26,7 @@ export default function SelectTransportation({ navigation }: any) {
   }, []);
 
   function toTravelling(i: number) {
+    AsyncStorage.setItem("method", i.toString());
     navigation.navigate("Travelling");
   }
 
