@@ -52,28 +52,28 @@ def getscore(id):
     cur = con.cursor()
     cur.execute("SELECT score FROM snippets_genuser WHERE id = ?", (id,))
     sofar = cur.fetchall()[0][0]
-    return sofar
+    return {'score': sofar}
 
 def getdistance(id):
     con = sqshit.connect("db.sqlite3")
     cur = con.cursor()
     cur.execute("SELECT TotalDistance FROM snippets_genuser WHERE id = ?", (id,))
     sofar = cur.fetchall()[0][0]
-    return sofar
+    return {'distance': sofar}
 
 def getname(id):
     con = sqshit.connect("db.sqlite3")
     cur = con.cursor()
     cur.execute("SELECT Username FROM snippets_genuser WHERE id = ?", (id,))
     sofar = cur.fetchall()[0][0]
-    return sofar
+    return {'name': sofar}
 
 def gettop10():
     con = sqshit.connect("db.sqlite3")
     cur = con.cursor()
     cur.execute("SELECT Username, score, TotalDistance FROM snippets_genuser ORDER BY score DESC LIMIT 10 ")
     top = cur.fetchall()
-    return(top)
+    return({'top':top})
 
 def getmypos(id):
     con = sqshit.connect("db.sqlite3")
@@ -99,7 +99,20 @@ def getnewID():
     new = cur.fetchall()
     return new[0][0]
 
-
+def getlvl(id):
+    score = getscore(id)['score']
+    over = False
+    lvl = 0
+    num = 10
+    pointsremain = 0
+    while not over:
+        if(score<num):
+            over = True
+            pointsremain = num-lvl
+        else:
+            num = num * 1.3
+            lvl = lvl + 1
+    return {'lvl':lvl, 'needed':int(pointsremain)}
 
 #createtable()
 #showtable()
