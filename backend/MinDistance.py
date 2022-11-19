@@ -85,4 +85,3 @@ def values(distancestot, transit):
     print(cartime)
     print(cardistance)
 
-values(distancestot, transit)
