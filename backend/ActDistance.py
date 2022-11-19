@@ -30,5 +30,4 @@ def calculate():
     print(retval)
 
 
-calculate()
 
