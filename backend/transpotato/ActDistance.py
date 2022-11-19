@@ -29,6 +29,6 @@ def calculate():
 
     retval = {"credits": int(distance*points*2), "duration": -time/60, "distance": int(distance)}
     return retval
-
+#1
 
 

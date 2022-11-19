@@ -54,8 +54,7 @@ def gettime(lat, lon, finlat, finlong):
         for j in y:
             legtime = (j['arrival_time'])['value'] - (j['departure_time'])['value']
             time = time + legtime
-    return time;
-
+    return time
 
 lat = 48.262709
 long = 11.667338

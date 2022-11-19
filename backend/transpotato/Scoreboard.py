@@ -1,5 +1,4 @@
 import mysql.connector
-
 def createdatabase():
   mydb = mysql.connector.connect(host="localhost",user="Transpotato",password="PotatosAreGreat")
   mycursor = mydb.cursor()
@@ -21,4 +20,4 @@ def connect():
 
 checkdatabase()
 createdatabase()
-connect()
+connect()#1

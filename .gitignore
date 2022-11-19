@@ -1,3 +1,4 @@
 backend/transpotato/__pycache__/
 backend/transpotato/transpotato/__pycache__/
-
+env/
+.idea/
