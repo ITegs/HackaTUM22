@@ -73,7 +73,7 @@ def gettop10():
     cur = con.cursor()
     cur.execute("SELECT Username, score, TotalDistance FROM snippets_genuser ORDER BY score DESC LIMIT 10 ")
     top = cur.fetchall()
-    return(top)
+    return({'top':top})
 
 def getmypos(id):
     con = sqshit.connect("db.sqlite3")
@@ -99,7 +99,18 @@ def getnewID():
     new = cur.fetchall()
     return new[0][0]
 
-
+def getlvl(id):
+    score = getscore(id)
+    over = False
+    lvl = 0
+    num = 10
+    while not over:
+        if(lvl>=num):
+            over = True
+        else:
+            num = num * 1.3
+            lvl = lvl +1
+    return {'lvl':lvl}
 
 #createtable()
 #showtable()
