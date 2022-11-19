@@ -7,6 +7,10 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import useCachedResources from "./hooks/useCachedResources";
 import useColorScheme from "./hooks/useColorScheme";
 import Navigation from "./navigation";
+import Header from "./components/Header";
+import { Text, View } from "./components/Themed";
+import { TextInput } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 
 export default function App() {
   const isLoadingComplete = useCachedResources();
@@ -17,14 +21,13 @@ export default function App() {
   const checkID = async () => {
     var id = await AsyncStorage.getItem("id");
     if (id === null) {
-      generateID();
     } else {
       setUuid(id);
     }
   };
 
   const generateID = async () => {
-    fetch("http://localhost:8000/genUser", {
+    fetch("http://localhost:8000/genUser?" + uuid, {
       method: "GET",
     })
       .then((response) => response.json())
@@ -46,7 +49,39 @@ export default function App() {
   } else {
     return (
       <SafeAreaProvider>
-        <Navigation colorScheme={colorScheme} />
+        <Header />
+
+        {uuid === "" ? (
+          <View
+            style={{
+              flex: 1,
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <TextInput
+              placeholder="Username"
+              onChangeText={(text) => setUuid(text)}
+              style={{
+                height: 40,
+                width: 200,
+                borderColor: "gray",
+                borderWidth: 1,
+                margin: 10,
+                padding: 10,
+              }}
+            />
+            <Ionicons
+              name="checkmark-circle"
+              size={45}
+              color="black"
+              onPress={generateID}
+              style={{ margin: 10 }}
+            />
+          </View>
+        ) : (
+          <Navigation colorScheme={colorScheme} />
+        )}
         <StatusBar />
       </SafeAreaProvider>
     );

@@ -5,7 +5,6 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { View, Text, Card } from "../components/Themed";
 import Theme from "../constants/Theme";
-import Header from "../components/Header";
 
 export default function SelectTransportation({ navigation }: any) {
   const [destination, setDestination] = useState("");
@@ -33,7 +32,6 @@ export default function SelectTransportation({ navigation }: any) {
 
   return (
     <View style={styles.container}>
-      <Header />
       <Card size={2} style={styles.desCard}>
         <Text style={styles.destination}>{destination}</Text>
       </Card>
