@@ -9,6 +9,7 @@ import {
   SafeAreaView as DefaultSafeAreaView,
   ScrollView as DefaultScrollView,
   Button as DefaultButton,
+  TextInput as DefaultTextInput,
 } from "react-native";
 
 import Colors from "../constants/Theme";
@@ -39,12 +40,20 @@ export type SafeAreaViewProps = ThemeProps & DefaultSafeAreaView["props"];
 export type ScrollViewProps = ThemeProps & DefaultScrollView["props"];
 export type CardProps = ThemeProps & DefaultView["props"] & { size: number };
 export type ButtonProps = ThemeProps & DefaultButton["props"];
+export type TextInputProps = ThemeProps & DefaultTextInput["props"];
 
 export function Text(props: TextProps) {
   const { style, lightColor, darkColor, ...otherProps } = props;
   const color = useThemeColor({ light: lightColor, dark: darkColor }, "text");
+  const fontFamily = "YanoneKaffeesatz";
+  const fontWeight = "bold";
 
-  return <DefaultText style={[{ color }, style]} {...otherProps} />;
+  return (
+    <DefaultText
+      style={[{ color, fontFamily, fontWeight }, style]}
+      {...otherProps}
+    />
+  );
 }
 
 export function View(props: ViewProps) {
@@ -87,9 +96,10 @@ export function Card(props: CardProps) {
     { light: lightColor, dark: darkColor },
     "card"
   );
-  const borderRadius = 30;
-  const alignSelf = props.size != 1 ? "center" : "flex-start";
-  const width = props.size === 2 ? "95%" : "40%";
+  const borderRadius = 25;
+  const alignSelf = "center";
+  const width = props.size === 2 ? "85%" : 170;
+  const height = props.size === 2 ? "15%" : 170;
   const padding = 20;
   const justifyContent = "center";
   const marginTop = props.size === 2 ? 20 : 0;
@@ -103,6 +113,7 @@ export function Card(props: CardProps) {
           borderRadius,
           alignSelf,
           width,
+          height,
           padding,
           justifyContent,
           marginTop,
@@ -123,4 +134,21 @@ export function Button(props: ButtonProps) {
   );
 
   return <DefaultButton color={backgroundColor} {...otherProps} />;
+}
+
+export function TextInput(props: TextInputProps) {
+  const { lightColor, darkColor, ...otherProps } = props;
+
+  return (
+    <DefaultTextInput
+      style={{
+        height: 40,
+        margin: 12,
+        borderRadius: 10,
+        padding: 10,
+        fontFamily: "YanoneKaffeesatz",
+      }}
+      {...otherProps}
+    />
+  );
 }

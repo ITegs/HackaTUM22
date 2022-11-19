@@ -1,25 +1,18 @@
 // https://coolors.co/03394f-124559-769ea7-96b0ae-aec3b0-eff6e0
 
-const tintColorLight = "#2f95dc";
-const tintColorDark = "#fff";
-
 export default {
   light: {
-    text: "#000",
-    background: "#fff",
-    card: "#f0f0f0",
-    button: "#34CB79",
-    tint: tintColorLight,
-    tabIconDefault: "#ccc",
-    tabIconSelected: tintColorLight,
+    text: "#1B221D",
+    background: "#FFFFFA",
+    card: "#639275",
+    button: "#508CA4",
+    accent1: "#FF312E",
   },
   dark: {
-    text: "#fff",
-    background: "#000",
-    card: "#222",
-    button: "#34CB79",
-    tint: tintColorDark,
-    tabIconDefault: "#ccc",
-    tabIconSelected: tintColorDark,
+    text: "#FFFFFA",
+    background: "#1B221D",
+    card: "#233329",
+    button: "#508CA4",
+    accent1: "#FF312E",
   },
 };
