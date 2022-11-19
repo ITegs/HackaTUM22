@@ -24,7 +24,7 @@ def totaldistance(lat, lon, finlat, finlong):
     dest = str(finlat) + ", " + str(finlong)
     gmaps = googlemaps.Client(key='AIzaSyA2eF7Qs2jsU8EuoVKJ9pFIUMKMNz79qdY')
     final = []
-    modes = ["walking", "bicycling", "driving"]
+    modes = ["walking", "bicycling"]
     for m in modes:
         now = datetime.now()
         directions_result = gmaps.directions(str(origin),str(dest), mode=m,departure_time=now)
@@ -61,9 +61,7 @@ lat = 48.262709
 long = 11.667338
 finlong = 48.182424
 finlat = 11.531829
-dist = getdistance(lat, long, finlong, finlat)
-distancestot = totaldistance(lat, long, finlong, finlat)
-transit = gettime(lat, long, finlong, finlat)
+
 def values(distancestot, transit):
     walktime = distancestot[0][1]
     walkdistance = distancestot[0][0]
@@ -72,8 +70,6 @@ def values(distancestot, transit):
     electrotime = bikedistance * 8 / 60
     electrodistance = bikedistance
     transittime = transit
-    cartime = distancestot[2][1]
-    cardistance = distancestot[2][0]
 
     print(walktime)
     print(walkdistance)
@@ -82,6 +78,11 @@ def values(distancestot, transit):
     print(electrotime)
     print(electrodistance)
     print(transittime)
-    print(cartime)
-    print(cardistance)
+
+def ret(lat, long, finlong, finlat):
+    dist = getdistance(lat, long, finlong, finlat)
+    distancestot = totaldistance(lat, long, finlong, finlat)
+    transit = gettime(lat, long, finlong, finlat)
+    returnval = {"credits": [int(distancestot[1][0]*0.01),int(transit*11.111*0.005),int(distancestot[0][0]*0.012),int(distancestot[1][0]*0.0035)], "duration": [distancestot[1][1],transit,distancestot[0][1],int(distancestot[1][0]*8/60)], "distance": [distancestot[1][0],distancestot[0][0],distancestot[1][0]]}
+    print(returnval)
 
