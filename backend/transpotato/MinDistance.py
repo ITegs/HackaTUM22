@@ -123,6 +123,6 @@ def ret(lat, long, street):
     distancestot = totaldistance(lat, long, finlat, finlong)
     transit = gettime(lat, long, finlat, finlong)
     returnval = {"credits": [int(distancestot[1][0]*0.01*2),int(transit*11.111*0.005*2),int(distancestot[0][0]*0.012*2),int(distancestot[1][0]*0.0035*2)], "duration": [int(distancestot[1][1]/60),int(transit/60),int(distancestot[0][1]/60),int(distancestot[1][0]*8/60/60)], "distance": [distancestot[1][0],distancestot[0][0],distancestot[1][0]]}
-    print(returnval)
+    return returnval
 
 ret(48.2625435, 11.6679877, "Olympia Einkaufszentrum")
