@@ -1,5 +1,5 @@
 import geopy.distance
-
+import Scoreboard
 
 
 def get(lat, long, finlat, finlong):
@@ -31,6 +31,7 @@ def calculate(inpt):
         points = 0
 
     retval = {"credits": int(distance*points*2), "duration": -time/60, "distance": int(distance)}
+    Scoreboard.addvalue(id, int(distance*points*2), int(distance))
     return retval
 #1
 
