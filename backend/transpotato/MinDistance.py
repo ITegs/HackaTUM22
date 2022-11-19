@@ -114,6 +114,7 @@ def values(distancestot, transit):
     print(electrodistance)
     print(transittime)
 
+## current latitude, current longitude, string of destination name
 def ret(lat, long, street):
     adress = (geocode(gmaps, str(str(street) + ",München, DE")))
     finlat = adress[0]['geometry']['location']['lat']
