@@ -32,7 +32,7 @@ def totaldistance(lat, lon, finlat, finlong):
         for j in directions_result:
             for i in j['legs']:
                 distance = (i['distance'])['value']
-                duration_in_traffic = (i['duration'])['text']
+                duration_in_traffic = (i['duration'])['value']
                 final.append([distance, duration_in_traffic])
     return final
 
