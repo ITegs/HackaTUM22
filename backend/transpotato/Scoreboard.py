@@ -103,14 +103,16 @@ def getlvl(id):
     score = getscore(id)
     over = False
     lvl = 0
+    pointsremein = 0
     num = 10
     while not over:
         if(lvl>=num):
             over = True
+            pointsremein = num-lvl
         else:
             num = num * 1.3
             lvl = lvl +1
-    return {'lvl':lvl}
+    return {'lvl':lvl, 'needed':int(pointsremein)}
 
 #createtable()
 #showtable()
