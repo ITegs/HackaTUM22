@@ -6,7 +6,7 @@
 
 <h2 align=center>EnvironMUC</h2>
 
-**_Motivate people for using enviroment friendly transportation services, by collecting credits for not taking the car._** \
+**_Motivate people to use environmentally friendly transportation services, by collecting credits for using environmentally friendly transportation._** \
 <br>
 
 ## intended process of using the app
