@@ -83,6 +83,6 @@ def ret(lat, long, finlong, finlat):
     dist = getdistance(lat, long, finlong, finlat)
     distancestot = totaldistance(lat, long, finlong, finlat)
     transit = gettime(lat, long, finlong, finlat)
-    returnval = {"credits": [int(distancestot[1][0]*0.01),int(transit*11.111*0.005),int(distancestot[0][0]*0.012),int(distancestot[1][0]*0.0035)], "duration": [distancestot[1][1],transit,distancestot[0][1],int(distancestot[1][0]*8/60)], "distance": [distancestot[1][0],distancestot[0][0],distancestot[1][0]]}
+    returnval = {"credits": [int(distancestot[1][0]*0.01*2),int(transit*11.111*0.005*2),int(distancestot[0][0]*0.012*2),int(distancestot[1][0]*0.0035*2)], "duration": [distancestot[1][1],transit,distancestot[0][1],int(distancestot[1][0]*8/60)], "distance": [distancestot[1][0],distancestot[0][0],distancestot[1][0]]}
     print(returnval)
 
