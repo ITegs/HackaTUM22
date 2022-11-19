@@ -98,8 +98,8 @@ export function Card(props: CardProps) {
   );
   const borderRadius = 25;
   const alignSelf = "center";
-  const width = props.size === 2 ? "85%" : 170;
-  const height = props.size === 2 ? "15%" : 170;
+  const width = props.size === 2 ? "85%" : 180;
+  const height = props.size === 2 ? "15%" : 200;
   const padding = 20;
   const justifyContent = "center";
   const marginTop = props.size === 2 ? 20 : 0;
