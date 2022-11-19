@@ -52,21 +52,21 @@ def getscore(id):
     cur = con.cursor()
     cur.execute("SELECT score FROM snippets_genuser WHERE id = ?", (id,))
     sofar = cur.fetchall()[0][0]
-    return sofar
+    return {'score':sofar}
 
 def getdistance(id):
     con = sqshit.connect("db.sqlite3")
     cur = con.cursor()
     cur.execute("SELECT TotalDistance FROM snippets_genuser WHERE id = ?", (id,))
     sofar = cur.fetchall()[0][0]
-    return sofar
+    return {'distance':sofar}
 
 def getname(id):
     con = sqshit.connect("db.sqlite3")
     cur = con.cursor()
     cur.execute("SELECT Username FROM snippets_genuser WHERE id = ?", (id,))
     sofar = cur.fetchall()[0][0]
-    return sofar
+    return {'name':sofar}
 
 def gettop10():
     con = sqshit.connect("db.sqlite3")
