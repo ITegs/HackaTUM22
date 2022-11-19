@@ -5,12 +5,11 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework import serializers
 from rest_framework.parsers import JSONParser
 from snippets.models import GenUser
-from snippets.models import RouteInfo
 from snippets.serializers import GenUserSerializer
-from snippets.serializers import RouteInfoSerializer
 import uuid
 
 from MinDistance import ret
+from ActDistance import calculate
 
 @csrf_exempt
 def snippet_list(request):
@@ -37,3 +36,13 @@ def route_info(request, pk):
         destination = data['destination']
         return HttpResponse(json.dumps(ret(lat, long, destination)), content_type='application/json; charset=utf8')
    
+@api_view(['POST'])
+def send_trip(request, pk):
+    try:
+        user = GenUser.objects.get(pk=pk)
+    except GenUser.DoesNotExist:
+        return HttpResponse(status=404)
+
+    if request.method == 'POST':
+        data = request.data
+        return HttpResponse(json.dumps(calculate(data)))
