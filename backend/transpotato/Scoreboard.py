@@ -84,7 +84,7 @@ def getmypos(id):
     for i in top:
         counter = counter + 1
         if i[0] == id:
-            return counter
+            return {'pos':counter}
 
 def changename(id, newname):
     con = sqshit.connect("db.sqlite3")
