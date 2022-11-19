@@ -1,7 +1,43 @@
 from datetime import datetime
 import googlemaps
 import mvg_api
+from googlemaps import convert
+gmaps = googlemaps.Client(key='AIzaSyA2eF7Qs2jsU8EuoVKJ9pFIUMKMNz79qdY')
 
+
+def geocode(client, address=None, place_id=None, components=None, bounds=None, region=None,
+            language=None):
+    """
+    Geocoding is the process of converting addresses
+    (like ``"1600 Amphitheatre Parkway, Mountain View, CA"``) into geographic
+    coordinates (like latitude 37.423021 and longitude -122.083739), which you
+    can use to place markers or position the map.
+    :param address: The address to geocode.
+    :type address: string
+    :rtype: list of geocoding results.
+    """
+
+    params = {}
+
+    if address:
+        params["address"] = address
+
+    if place_id:
+        params["place_id"] = place_id
+
+    if components:
+        params["components"] = convert.components(components)
+
+    if bounds:
+        params["bounds"] = convert.bounds(bounds)
+
+    if region:
+        params["region"] = region
+
+    if language:
+        params["language"] = language
+
+    return client._request("/maps/api/geocode/json", params).get("results", [])
 
 
 
@@ -78,10 +114,14 @@ def values(distancestot, transit):
     print(electrodistance)
     print(transittime)
 
-def ret(lat, long, finlong, finlat):
-    dist = getdistance(lat, long, finlong, finlat)
-    distancestot = totaldistance(lat, long, finlong, finlat)
-    transit = gettime(lat, long, finlong, finlat)
+def ret(lat, long, street):
+    adress = (geocode(gmaps, str(str(street) + ",München, DE")))
+    finlat = adress[0]['geometry']['location']['lat']
+    finlong = adress[0]['geometry']['location']['lng']
+
+    dist = getdistance(lat, long, finlat, finlong)
+    distancestot = totaldistance(lat, long, finlat, finlong)
+    transit = gettime(lat, long, finlat, finlong)
     returnval = {"credits": [int(distancestot[1][0]*0.01*2),int(transit*11.111*0.005*2),int(distancestot[0][0]*0.012*2),int(distancestot[1][0]*0.0035*2)], "duration": [distancestot[1][1],transit,distancestot[0][1],int(distancestot[1][0]*8/60)], "distance": [distancestot[1][0],distancestot[0][0],distancestot[1][0]]}
     print(returnval)
 
