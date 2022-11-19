@@ -1,9 +1,6 @@
 import json
 from rest_framework.decorators import api_view
 from django.http import HttpResponse, JsonResponse
-from django.views.decorators.csrf import csrf_exempt
-from rest_framework import serializers
-from rest_framework.parsers import JSONParser
 from snippets.models import GenUser
 from snippets.serializers import GenUserSerializer
 import uuid
@@ -11,13 +8,18 @@ import uuid
 from MinDistance import ret
 from ActDistance import calculate
 
-@csrf_exempt
+@api_view(['GET'])
 def snippet_list(request):
     """
     List all code snippets, or create a new snippet.
     """
     if request.method == 'GET':
-        user = GenUser(id=str(uuid.uuid4()), Username='')
+        params = request.query_params
+        username = ''
+        if len(params.getlist('name')) != 0:
+            username = params.getlist('name')[0]
+            
+        user = GenUser(id=str(uuid.uuid4()), Username=username)
         user.save()
         serializer = GenUserSerializer(user)
         return JsonResponse(serializer.data, safe=False)
@@ -31,8 +33,8 @@ def route_info(request, pk):
 
     if request.method == 'POST':
         data = request.data
-        lat = data['latitude']
-        long = data['longitude']
+        lat = data['location']['latitude']
+        long = data['location']['longitude']
         destination = data['destination']
         return HttpResponse(json.dumps(ret(lat, long, destination)), content_type='application/json; charset=utf8')
    
