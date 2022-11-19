@@ -17,6 +17,7 @@ export default function App() {
   const colorScheme = useColorScheme();
 
   const [uuid, setUuid] = useState("");
+  const [username, setUsername] = useState("");
 
   const checkID = async () => {
     var id = await AsyncStorage.getItem("id");
@@ -27,13 +28,14 @@ export default function App() {
   };
 
   const generateID = async () => {
-    fetch("http://localhost:8000/genUser?" + uuid, {
+    fetch("http://localhost:8000/genUser?name=" + username, {
       method: "GET",
     })
       .then((response) => response.json())
       .then((json) => {
         setUuid(json.id);
         AsyncStorage.setItem("id", json.id);
+        console.log(json.id);
       })
       .catch((error) => {
         console.error(error);
@@ -50,7 +52,6 @@ export default function App() {
     return (
       <SafeAreaProvider>
         <Header />
-
         {uuid === "" ? (
           <View
             style={{
@@ -61,7 +62,7 @@ export default function App() {
           >
             <TextInput
               placeholder="Username"
-              onChangeText={(text) => setUuid(text)}
+              onChangeText={(text) => setUsername(text)}
               style={{
                 height: 40,
                 width: 200,
