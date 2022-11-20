@@ -113,8 +113,6 @@ def getlvl(id):
             num = num * 1.3
             lvl = lvl + 1
     return {'lvl':lvl, 'needed':int(pointsremain)}
-
-
 #createtable()
 #showtable()
 con = sqshit.connect("db.sqlite3")

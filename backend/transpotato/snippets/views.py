@@ -7,6 +7,7 @@ import uuid
 
 from MinDistance import ret
 from ActDistance import calculate
+from Scoreboard import getscore, getdistance, getname, gettop10, getlvl
 
 @api_view(['GET'])
 def snippet_list(request):
@@ -48,3 +49,48 @@ def send_trip(request, pk):
     if request.method == 'POST':
         data = request.data
         return HttpResponse(json.dumps(calculate(data)))
+
+@api_view(['GET'])
+def get_score(request, pk):
+    try:
+        user = GenUser.objects.get(pk=pk)
+    except GenUser.DoesNotExist:
+        return HttpResponse(status=404)
+
+    if request.method == 'GET':
+        return HttpResponse(json.dumps(getscore(pk)))
+
+@api_view(['GET'])
+def get_distance(request, pk):
+    try:
+        user = GenUser.objects.get(pk=pk)
+    except GenUser.DoesNotExist:
+        return HttpResponse(status=404)
+
+    if request.method == 'GET':
+        return HttpResponse(json.dumps(getdistance(pk)))
+    
+@api_view(['GET'])
+def get_name(request, pk):
+    try:
+        user = GenUser.objects.get(pk=pk)
+    except GenUser.DoesNotExist:
+        return HttpResponse(status=404)
+
+    if request.method == 'GET':
+        return HttpResponse(json.dumps(getname(pk)))
+
+@api_view(['GET'])
+def get_lvl(request, pk):
+    try:
+        user = GenUser.objects.get(pk=pk)
+    except GenUser.DoesNotExist:
+        return HttpResponse(status=404)
+
+    if request.method == 'GET':
+        return HttpResponse(json.dumps(getlvl(pk)))
+
+@api_view(['GET'])
+def get_top_ten(request):
+    if request.method == 'GET':
+        return HttpResponse(json.dumps(gettop10()))
