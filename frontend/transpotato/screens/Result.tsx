@@ -1,5 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import React from "react";
+import React, { useState } from "react";
 import { View, Text, Card } from "../components/Themed";
 import { StyleSheet } from "react-native";
 
@@ -7,9 +7,9 @@ import { LinearGradient } from "expo-linear-gradient";
 import { AntDesign } from "@expo/vector-icons";
 
 export default function Result({ navigation }: any) {
-  const [newCredits, setNewCredits] = React.useState(0);
-  const [newDuration, setNewDuration] = React.useState(0);
-  const [newDistance, setNewDistance] = React.useState(0);
+  const [newCredits, setNewCredits] = useState(0);
+  const [newDuration, setNewDuration] = useState(0);
+  const [newDistance, setNewDistance] = useState(0);
 
   const set = () => {
     AsyncStorage.getItem("newCredits").then((value) => {

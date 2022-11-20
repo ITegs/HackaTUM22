@@ -35,9 +35,20 @@ export default function Header() {
             position: "absolute",
             left: 0,
             top: 30,
-            width: nxtLvl * 2 + 10,
+            width: 200,
             height: 10,
             backgroundColor: "#FFFFFA",
+            borderRadius: 10,
+          }}
+        />
+        <View
+          style={{
+            position: "absolute",
+            left: 0,
+            top: 30,
+            width: nxtLvl * 2 + 10,
+            height: 10,
+            backgroundColor: "#59A96A",
             borderRadius: 10,
           }}
         />

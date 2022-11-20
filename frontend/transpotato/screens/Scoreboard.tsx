@@ -10,7 +10,7 @@ export default function Scoreboard() {
   ]);
 
   React.useEffect(() => {
-    fetch("http://localhost:8000/gettop10")
+    fetch("http://192.168.12.1:8000/getTopTen/")
       .then((response) => response.json())
       .then((json) => setTop10(json))
       .catch((error) => console.error(error))

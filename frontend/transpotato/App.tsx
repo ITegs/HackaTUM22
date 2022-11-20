@@ -22,8 +22,8 @@ export default function App() {
   const checkID = async () => {
     var id = await AsyncStorage.getItem("id");
     if (id === null) {
-      await AsyncStorage.setItem("id", "123");
-      setUuid("123");
+      // await AsyncStorage.setItem("id", "123");
+      // setUuid("123");
     } else {
       setUuid(id);
     }
@@ -31,22 +31,23 @@ export default function App() {
 
   const generateID = async () => {
     AsyncStorage.setItem("username", username);
-    fetch("http://localhost:8000/genUser?name=" + username, {
+    fetch("http://192.168.12.1:8000/genUser/?name=" + username, {
       method: "GET",
     })
       .then((response) => response.json())
       .then((json) => {
         setUuid(json.id);
         AsyncStorage.setItem("id", json.id);
-        console.log(json.id);
+        updateScore(json.id);
+        fetchLvl(json.id);
       })
       .catch((error) => {
         console.error(error);
       });
   };
 
-  const updateScore = async () => {
-    fetch("http://localhost:8000/getscore?id=" + uuid, {
+  const updateScore = async (iid: any) => {
+    fetch("http://192.168.12.1:8000/getScore/" + iid + "/", {
       method: "GET",
     })
       .then((response) => response.json())
@@ -59,8 +60,8 @@ export default function App() {
       });
   };
 
-  const fetchLvl = async () => {
-    fetch("http://localhost:8000/getLvl/" + uuid, {
+  const fetchLvl = async (iid: any) => {
+    fetch("http://192.168.12.1:8000/getLvl/" + iid + "/", {
       method: "GET",
     })
       .then((response) => response.json())
@@ -74,10 +75,13 @@ export default function App() {
       });
   };
 
+  const fetchFurther = async () => {
+    generateID().then(() => {});
+  };
+
   useEffect(() => {
+    AsyncStorage.removeItem("id");
     checkID();
-    updateScore();
-    fetchLvl();
   }, []);
 
   if (!isLoadingComplete) {
@@ -110,7 +114,7 @@ export default function App() {
               name="checkmark-circle"
               size={45}
               color="black"
-              onPress={generateID}
+              onPress={fetchFurther}
               style={{ margin: 10 }}
             />
           </View>
