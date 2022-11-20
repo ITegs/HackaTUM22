@@ -7,7 +7,7 @@ import uuid
 
 from MinDistance import ret
 from ActDistance import calculate
-from Scoreboard import getscore, getdistance, getname, gettop10, getlvl
+from Scoreboard import getscore, getdistance, getname, gettop10, getlvl, getmypos
 
 @api_view(['GET'])
 def snippet_list(request):
@@ -19,7 +19,6 @@ def snippet_list(request):
         username = ''
         if len(params.getlist('name')) != 0:
             username = params.getlist('name')[0]
-            
         user = GenUser(id=str(uuid.uuid4()), Username=username)
         user.save()
         serializer = GenUserSerializer(user)
@@ -89,6 +88,16 @@ def get_lvl(request, pk):
 
     if request.method == 'GET':
         return HttpResponse(json.dumps(getlvl(pk)))
+
+@api_view(['GET'])
+def get_my_position(request, pk):
+    try:
+        user = GenUser.objects.get(pk=pk)
+    except GenUser.DoesNotExist:
+        return HttpResponse(status=404)
+
+    if request.method == 'GET':
+        return HttpResponse(json.dumps(getmypos(pk)))
 
 @api_view(['GET'])
 def get_top_ten(request):
