@@ -26,6 +26,8 @@ import {
 } from "../types";
 import LinkingConfiguration from "./LinkingConfiguration";
 import Travelling from "../screens/Travelling";
+import Scoreboard from "../screens/Scoreboard";
+import Result from "../screens/Result";
 
 export default function Navigation({
   colorScheme,
@@ -71,6 +73,16 @@ function RootNavigator() {
         component={Travelling}
         options={{ title: "Traveling", headerShown: false }}
       />
+      <Stack.Screen
+        name="Scoreboard"
+        component={Scoreboard}
+        options={{ title: "Scoreboard", headerShown: false }}
+      />
+      <Stack.Screen
+        name="Result"
+        component={Result}
+        options={{ title: "Result", headerShown: false }}
+      />
     </Stack.Navigator>
   );
 }
@@ -97,6 +109,15 @@ function BottomTabNavigator() {
         component={Home}
         options={({ navigation }: RootTabScreenProps<"Home">) => ({
           tabBarIcon: ({ color }) => <TabBarIcon name="home" color={color} />,
+          tabBarShowLabel: false,
+        })}
+      />
+      <BottomTab.Screen
+        name="Scoreboard"
+        component={Scoreboard}
+        options={({ navigation }: RootTabScreenProps<"Scoreboard">) => ({
+          tabBarIcon: ({ color }) => <TabBarIcon name="trophy" color={color} />,
+          tabBarShowLabel: false,
         })}
       />
     </BottomTab.Navigator>

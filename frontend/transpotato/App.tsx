@@ -22,12 +22,15 @@ export default function App() {
   const checkID = async () => {
     var id = await AsyncStorage.getItem("id");
     if (id === null) {
+      await AsyncStorage.setItem("id", "123");
+      setUuid("123");
     } else {
       setUuid(id);
     }
   };
 
   const generateID = async () => {
+    AsyncStorage.setItem("username", username);
     fetch("http://localhost:8000/genUser?name=" + username, {
       method: "GET",
     })
@@ -42,8 +45,24 @@ export default function App() {
       });
   };
 
+  const updateScore = async () => {
+    fetch("http://localhost:8000/getscore?id=" + uuid, {
+      method: "GET",
+    })
+      .then((response) => response.json())
+      .then((json) => {
+        console.log(json);
+        AsyncStorage.setItem("score", json);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
   useEffect(() => {
-    checkID();
+    checkID().then(() => {
+      updateScore();
+    });
   }, []);
 
   if (!isLoadingComplete) {
