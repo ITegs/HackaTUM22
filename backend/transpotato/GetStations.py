@@ -81,4 +81,3 @@ def ret(lat, long, street):
     except:
         print("An exception occurred")
     return transit
-print(ret(lat, long, "Marienplatz"))
