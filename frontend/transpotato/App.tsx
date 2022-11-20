@@ -59,10 +59,25 @@ export default function App() {
       });
   };
 
+  const fetchLvl = async () => {
+    fetch("http://localhost:8000/getLvl/" + uuid, {
+      method: "GET",
+    })
+      .then((response) => response.json())
+      .then((json) => {
+        console.log(json);
+        AsyncStorage.setItem("lvl", json.lvl);
+        AsyncStorage.setItem("nxtLvl", json.needed);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
   useEffect(() => {
-    checkID().then(() => {
-      updateScore();
-    });
+    checkID();
+    updateScore();
+    fetchLvl();
   }, []);
 
   if (!isLoadingComplete) {
