@@ -22,6 +22,8 @@ export type RootStackParamList = {
   NotFound: undefined;
   SelectTransportation: undefined;
   Travelling: undefined;
+  Scoreboard: undefined;
+  Result: undefined;
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> =
@@ -31,6 +33,8 @@ export type RootTabParamList = {
   Home: undefined;
   SelectTransportation: undefined;
   Travelling: undefined;
+  Scoreboard: undefined;
+  Result: undefined;
 };
 
 export type RootTabScreenProps<Screen extends keyof RootTabParamList> =

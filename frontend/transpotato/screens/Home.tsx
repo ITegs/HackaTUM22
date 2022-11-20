@@ -3,13 +3,7 @@ import React, { useEffect } from "react";
 import { StyleSheet } from "react-native";
 import SearchCard from "../components/SearchCard";
 
-import {
-  Text,
-  SafeAreaView,
-  Card,
-  TextInput,
-  Button,
-} from "../components/Themed";
+import { Text, SafeAreaView, Card } from "../components/Themed";
 import { RootTabScreenProps } from "../types";
 
 export default function Home({ navigation }: RootTabScreenProps<"Home">) {
@@ -17,24 +11,22 @@ export default function Home({ navigation }: RootTabScreenProps<"Home">) {
     navigation.navigate("SelectTransportation");
   };
 
-  const [id, setId] = React.useState("");
+  const [username, setUsername] = React.useState("");
 
   useEffect(() => {
-    AsyncStorage.getItem("id").then((value) => {
+    AsyncStorage.getItem("username").then((value) => {
       if (value !== null) {
-        setId(value);
+        setUsername(value);
       }
     });
   }, []);
 
   return (
     <SafeAreaView style={styles.container}>
-      <Card size={2}>
-        <Text style={styles.title}>Welcome to Transpotato!</Text>
-        <Text style={styles.subtitle}>Your ID: {id}</Text>
+      <Card size={2} style={styles.card}>
+        <Text style={styles.title}>Welcome {username}!</Text>
+        <SearchCard toSelectTransportation={toSelectTransportation} />
       </Card>
-
-      <SearchCard toSelectTransportation={toSelectTransportation} />
     </SafeAreaView>
   );
 }
@@ -43,7 +35,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    paddingTop: 50,
+  },
+  card: {
+    height: "40%",
+    marginTop: 20,
   },
   title: {
     fontSize: 20,
