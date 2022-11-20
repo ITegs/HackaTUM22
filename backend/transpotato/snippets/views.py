@@ -8,6 +8,7 @@ import uuid
 from MinDistance import ret
 from ActDistance import calculate
 from Scoreboard import getscore, getdistance, getname, gettop10, getlvl, getmypos
+from FindNearestPublicTransport import getstations
 
 @api_view(['GET'])
 def snippet_list(request):
@@ -37,6 +38,20 @@ def route_info(request, pk):
         long = data['location']['longitude']
         destination = data['destination']
         return HttpResponse(json.dumps(ret(lat, long, destination)), content_type='application/json; charset=utf8')
+
+@api_view(['POST'])
+def get_nearest_station(request, pk):
+    try:
+        user = GenUser.objects.get(pk=pk)
+    except GenUser.DoesNotExist:
+        return HttpResponse(status=404)
+
+    if request.method == 'POST':
+        data = request.data
+        lat = data['location']['latitude']
+        long = data['location']['longitude']
+        destination = data['destination']
+        return HttpResponse(json.dumps(getstations(lat, long, destination)), content_type='application/json; charset=utf8')
    
 @api_view(['POST'])
 def send_trip(request, pk):

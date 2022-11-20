@@ -4,6 +4,7 @@ from snippets import views
 urlpatterns = [
     path('genUser/', views.snippet_list),
     path('routeInfo/<str:pk>/', views.route_info),
+    path('get_nearest_station/<str:pk>/', views.get_nearest_station),
     path('sendTrip/<str:pk>/', views.send_trip),
     path('getScore/<str:pk>/', views.get_score),
     path('getDistance/<str:pk>/', views.get_distance),
