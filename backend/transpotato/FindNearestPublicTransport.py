@@ -47,5 +47,3 @@ def getstations(lat, long, street):
         return ret(sta1name, sta2name)
 
 
-
-print(getstations(48.264879, 11.669938, "Kieferngarten"))
