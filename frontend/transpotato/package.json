@@ -16,15 +16,16 @@
     "@react-navigation/native": "^6.0.13",
     "@react-navigation/native-stack": "^6.9.1",
     "expo": "~47.0.6",
+    "expo-linear-gradient": "^12.0.1",
     "expo-linking": "^3.2.3",
+    "expo-location": "~15.0.1",
     "expo-splash-screen": "^0.17.5",
     "expo-status-bar": "~1.4.2",
     "expo-web-browser": "^12.0.0",
     "react": "18.1.0",
     "react-dom": "18.1.0",
     "react-native": "0.70.5",
-    "react-native-web": "~0.18.9",
-    "expo-location": "~15.0.1"
+    "react-native-web": "~0.18.9"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",

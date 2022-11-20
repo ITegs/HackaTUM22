@@ -52,13 +52,34 @@ export default function Travelling({ navigation }: any) {
     }
   };
 
+  const safeResults = async () => {
+    fetch("http://localhost:8000/sendTrip", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(track),
+    })
+      .then((response) => response.json())
+      .then((json) => {
+        AsyncStorage.setItem("newCredits", json.credits);
+        AsyncStorage.setItem("newDuration", json.duration);
+        AsyncStorage.setItem("newDistance", json.distance);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+
+    resetTrack();
+  };
+
   const breakLoop = () => {
     setRunning(false);
     clearInterval(interval);
     console.log("break");
     console.log(track);
 
-    navigation.navigate("Home");
+    navigation.navigate("Result");
   };
 
   useEffect(() => {
@@ -99,6 +120,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
+    paddingBottom: 100,
   },
   card: {
     height: "30%",

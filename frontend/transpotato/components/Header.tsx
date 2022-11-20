@@ -14,7 +14,6 @@ export default function Header() {
       }
     });
   }, []);
-
   return (
     <HeaderView style={styles.container}>
       <View style={styles.scoreContainer}>
